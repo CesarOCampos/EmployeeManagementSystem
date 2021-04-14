@@ -1,0 +1,25 @@
+DROP DATABASE IF EXISTS employeeDB;
+
+CREATE DATABASE employeeDB;
+
+USE employeeDB;
+
+CREATE TABLE department(
+id INT NOT NULL PRIMARY KEY,
+name VARCHAR(60) NULL
+);
+
+CREATE TABLE Role(
+id INT NOT NULL PRIMARY KEY,
+title VARCHAR(50) NULL,
+salary DECIMAL(15, 2),
+department_id INT
+);
+
+CREATE TABLE employee(
+id INT NOT NULL PRIMARY KEY,
+first_name VARCHAR(30) NULL,
+last_name VARCHAR(30) NOT NULL,
+role_id INT NOT NULL,
+manager_id INT NULL
+);

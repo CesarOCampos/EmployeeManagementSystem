@@ -1,0 +1,27 @@
+{
+    "name": "employeemanagementsystem",
+    "version": "1.0.0",
+    "description": "1. [Project Task](#project-task)\r 2. [User Story](#user-story)\r 3. [Acceptance Criteria](#acceptance-criteria)\r 4. [Installation Instructions](#installation-instruction)\r 5. [Usage Information](#usage-information)\r 6. [Contributor Guidelines](#contributor-guidelines)\r 7. [Mock Up](#mock-up)\r 8. [License](#license)\r 9. [Questions](#questions)",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "seeds": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CesarOCampos/EmployeeManagementSystem.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/CesarOCampos/EmployeeManagementSystem/issues"
+    },
+    "homepage": "https://github.com/CesarOCampos/EmployeeManagementSystem#readme",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "inquirer": "^8.0.0",
+        "mysql": "^2.18.1"
+    }
+}
