@@ -1,4 +1,4 @@
-# EmployeeManagementSystem
+# Employee Management System
 
 #### Table of contents
 
@@ -6,17 +6,17 @@
 2. [User Story](#user-story)
 3. [Acceptance Criteria](#acceptance-criteria)
 4. [Installation Instructions](#installation-instruction)
-5. [Usage Information](#usage-information)
-6. [Contributor Guidelines](#contributor-guidelines)
-7. [Mock Up](#mock-up)
-8. [License](#license)
-9. [Questions](#questions)
+5. [Test Instructions](#test-instruction)
+6. [Usage Information](#usage-information)
+7. [Contributor Guidelines](#contributor-guidelines)
+8. [Mock Up](#mock-up)
+9. [Video Link](#video-link)
+10. [License](#license)
+11. [Questions](#questions)
 
 ## Project Task
 
-Your assignment is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
-
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Heroku.
+Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. In this homework assignment, your challenge is to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.
 
 ## User Story
 
@@ -28,25 +28,31 @@ So that I can organize and plan my business
 
 ## Acceptance Criteria
 
-```
-GIVEN a note-taking application
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-WHEN I enter a new note title and the note’s text
-THEN a Save icon appears in the navigation at the top of the page
-WHEN I click on the Save icon
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column
-WHEN I click on the Write icon in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
-```
+Build a command-line application that at a minimum allows the user to:
+
+  * Add departments, roles, employees
+
+  * View departments, roles, employees
+
+  * Update employee roles
+
+Bonus points if you're able to:
+
+  * Update employee managers
+
+  * View employees by manager
+
+  * Delete departments, roles, and employees
+
+  * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 ## Installation Instructions
 
 ```npm i```
+
+## Test Instructions
+
+    * npm test
 
 ## Usage Information
     * information to be known by user when using the repo
@@ -55,6 +61,7 @@ THEN I am presented with empty fields to enter a new note title and the note’s
     * Contributions are always welcome! (Please fork and pull request only.)
     
 ## Mock-Up
+
 
 
 ## License 
