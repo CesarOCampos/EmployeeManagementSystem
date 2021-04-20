@@ -12,7 +12,6 @@ VALUES
 ('Lawyer', 180000, 1),
 ('Legal', 150000, 1),
 ('Engineering Manager', 170000, 2),
-
 ('Software Engineer', 100000, 2),
 ('Engineer', 90000, 2),
 ('Financial Manager', 140000, 3),
@@ -29,15 +28,14 @@ VALUES
 ('Cesar', 'Campos','2', '2'),
 ('Melisa', 'Delabra','3', '1'),
 ('Austin', 'Smith','4', '4'),
-('Joel', 'Romero','5', '4'),
+('Ana', 'Moreno','5', '4'),
 ('Denis', 'Salvino','6', '1'),
 ('George', 'Huliaris','7', '2'),
 ('Matthew', 'Miller','8', '3'),
 ('Michael', 'Galloway','9', '4'),
 ('Rodgrigo', 'Galicia','10', '4'),
 ('Sean', 'Francis','11', '2'),
-('Susan', 'Fujii','12', '3'),
-('Ana', 'Moreno', '13', '3');
+('Susan', 'Fujii','12', '3');
 
 SELECT * FROM department;
 SELECT * FROM role;
