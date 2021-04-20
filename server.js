@@ -90,7 +90,7 @@ const addDepartment = () => {
         message: 'Enter the department name:',
     }]).then(({ department_name }) => {
         const query = connection.query('INSERT INTO department SET ?', { department_name }, (err, results) => {
-            (err) ? err: console.log('Failed to add Department.')
+            (err) ? err: console.log('\nYou have successfully added a new Department!')
             viewDepartments();
         })
     })
