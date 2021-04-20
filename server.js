@@ -36,7 +36,7 @@ const SystemSearch = () => {
                 case 'View All Employees':
                     return viewEmployees();
 
-                case 'View Employees by Role':
+                case 'View Roles':
                     return viewRoles();
 
                 case 'View Employees by department':
@@ -158,7 +158,7 @@ const addRole = () => {
         }])
         .then(({ title, salary, department_id }) => {
             connection.query('INSERT INTO role SET ?', { title, salary, department_id }, (err, results) => {
-                err ? console.error(err) : console.log('Successfully Updated!');
+                err ? console.error(err) : console.log('Successfully added a new role!');
                 console.table(results);
                 viewDepartments();
             })
@@ -198,7 +198,8 @@ const updateEmployee = () => {
             ],
         }, ]).then(({ role_id, id }) => {
             var query = connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [role_id, id], (err, results) => {
-                err ? console.error(err) : console.log('Successfully Updated!');
+                err ? console.error(err) : console.log('Successfully Updated the employee!');
+                console.table(results);
                 viewEmployees();
             })
         })
