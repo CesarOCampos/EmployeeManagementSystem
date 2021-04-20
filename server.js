@@ -142,10 +142,10 @@ const addEmployee = () => {
                                     viewEmployees();
                                 })
                             SystemSearch();
-                        });
-                });
-            });
-    });
+                        })
+                })
+            })
+    })
 }
 
 const addRole = () => {
@@ -170,7 +170,7 @@ const addRole = () => {
                 (err) ? console.log(err): console.log('Successfully added a new role!');
                 console.table(result);
             })
-            viewRoles()
+            viewRoles();
         })
 };
 
