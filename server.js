@@ -61,21 +61,26 @@ const SystemSearch = () => {
 
 const viewEmployees = () => {
     connection.query('SELECT * FROM employee', (err, result) => {
-        err ? console.error(err) : console.table(result);
+        if (err) throw err;
+        console.log('viewEmployees');
+        console.table(result);
         SystemSearch();
     });
 };
 
 const viewDepartments = () => {
     connection.query('SELECT * FROM department', (err, result) => {
-        err ? console.error(err) : console.table(result);
+        if (err) throw err;
+        console.log('viewDepartments');
+        console.table(result);
         SystemSearch();
     });
 };
 
 const viewRoles = () => {
     connection.query('SELECT * FROM role', (err, result) => {
-        err ? console.error(err) : console.table(result);
+        if (err) throw err;
+        console.table(result);
         SystemSearch();
     });
 };
