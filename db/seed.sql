@@ -27,16 +27,17 @@ VALUES
 
 ('Rachel', 'Thiim','1', '1'),
 ('Cesar', 'Campos','2', '2'),
-('Melisa', 'Campos','3', '1'),
-('Austin', 'Smith','4', '3'),
-('Joel', 'Campos','5', '4'),
+('Melisa', 'Delabra','3', '1'),
+('Austin', 'Smith','4', '4'),
+('Joel', 'Romero','5', '4'),
 ('Denis', 'Salvino','6', '1'),
 ('George', 'Huliaris','7', '2'),
 ('Matthew', 'Miller','8', '3'),
 ('Michael', 'Galloway','9', '4'),
 ('Rodgrigo', 'Galicia','10', '4'),
 ('Sean', 'Francis','11', '2'),
-('Susan', 'Fujii','12', '3');
+('Susan', 'Fujii','12', '3'),
+('Ana', 'Moreno', '13', '3');
 
 SELECT * FROM department;
 SELECT * FROM role;

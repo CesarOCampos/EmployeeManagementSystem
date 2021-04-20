@@ -21,34 +21,34 @@ const SystemSearch = () => {
             type: "rawlist",
             message: "What would you like to do?",
             choices: [
-                'View All Employees',
+                'View Employees',
                 'View Roles',
-                'View Employees by department',
-                'Add a Department',
-                'Add an Employee',
-                'Add a Role',
+                'View Departments',
+                'Add Department',
+                'Add Employee',
+                'Add Role',
                 'Update Employee',
                 'Quit'
             ]
         })
         .then((answer) => {
             switch (answer.choice) {
-                case 'View All Employees':
+                case 'View Employees':
                     return viewEmployees();
 
                 case 'View Roles':
                     return viewRoles();
 
-                case 'View Employees by department':
+                case 'View Departments':
                     return viewDepartments();
 
-                case 'Add a Department':
+                case 'Add Department':
                     return addDepartment();
 
-                case 'Add an Employee':
+                case 'Add Employee':
                     return addEmployee();
 
-                case 'Add a Role':
+                case 'Add Role':
                     return addRole();
 
                 case 'Update Employee':
@@ -101,22 +101,25 @@ const addDepartment = () => {
 const addEmployee = () => {
     connection.query('SELECT role.id AS id, role.title as title FROM role', (err, results) => {
         err ? console.error(err) : inquirer.prompt([{
-                name: 'firstName',
-                message: "What is the Employee's First Name?",
-            }, {
-                name: 'lastName',
-                message: "What is the Employee's Last Name?",
-            }, {
-                name: 'employeeRole',
-                message: "What is the Employee's Role?",
-                type: 'list',
-                choices: results.map((role) => {
-                    return {
-                        name: `${role.id}: ${role.title}`,
-                        value: role
-                    }
-                })
-            }])
+                    name: 'firstName',
+                    message: "What is the Employee's First Name?",
+                },
+                {
+                    name: 'lastName',
+                    message: "What is the Employee's Last Name?",
+                },
+                {
+                    name: 'employeeRole',
+                    message: "What is the Employee's Role?",
+                    type: 'list',
+                    choices: results.map((role) => {
+                        return {
+                            name: `${role.id}: ${role.title}`,
+                            value: role
+                        }
+                    })
+                }
+            ])
             .then(({ firstName, lastName, employeeRole }) => {
                 connection.query('SELECT id, first_name, last_name FROM employee WHERE (id IN (SELECT manager_id FROM employee));', (err, results) => {
                     err ? console.error(err) : inquirer.prompt([{
@@ -144,22 +147,25 @@ const addEmployee = () => {
 
 const addRole = () => {
     inquirer.prompt([{
-            name: 'title',
-            type: 'input',
-            message: 'Enter the new role title:',
-        }, {
-            name: 'salary',
-            type: 'input',
-            message: 'Enter the new role salary:',
-        }, {
-            name: 'department_id',
-            type: 'input',
-            message: 'Enter the new role department id:',
-        }])
+                name: 'title',
+                type: 'input',
+                message: 'Enter the new role title:',
+            },
+            {
+                name: 'salary',
+                type: 'input',
+                message: 'Enter the new role salary:',
+            },
+            {
+                name: 'department_id',
+                type: 'input',
+                message: 'Enter the new role department id:',
+            }
+        ])
         .then(({ title, salary, department_id }) => {
-            connection.query('INSERT INTO role SET ?', { title, salary, department_id }, (err, results) => {
-                err ? console.error(err) : console.log('Successfully added a new role!');
-                console.table(results);
+            connection.query('INSERT INTO role SET ?', { title, salary, department_id }, (err, result) => {
+                (err) ? console.log(err): console.log('Successfully added a new role!');
+                console.table(result);
                 viewDepartments();
             })
         })
