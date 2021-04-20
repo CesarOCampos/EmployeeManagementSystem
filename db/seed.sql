@@ -36,7 +36,7 @@ VALUES
 ('Michael', 'Galloway','9', '4'),
 ('Rodgrigo', 'Galicia','10', '4'),
 ('Sean', 'Francis','11', '2'),
-('Susan', 'Fuijii','12', '3');
+('Susan', 'Fujii','12', '3');
 
 SELECT * FROM department;
 SELECT * FROM role;

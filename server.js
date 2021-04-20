@@ -62,16 +62,6 @@ const SystemSearch = () => {
 const viewEmployees = () => {
     connection.query('SELECT * FROM employee', (err, result) => {
         if (err) throw err;
-        console.log('viewEmployees');
-        console.table(result);
-        SystemSearch();
-    });
-};
-
-const viewDepartments = () => {
-    connection.query('SELECT * FROM department', (err, result) => {
-        if (err) throw err;
-        console.log('viewDepartments');
         console.table(result);
         SystemSearch();
     });
@@ -79,6 +69,14 @@ const viewDepartments = () => {
 
 const viewRoles = () => {
     connection.query('SELECT * FROM role', (err, result) => {
+        if (err) throw err;
+        console.table(result);
+        SystemSearch();
+    });
+};
+
+const viewDepartments = () => {
+    connection.query('SELECT * FROM department', (err, result) => {
         if (err) throw err;
         console.table(result);
         SystemSearch();
@@ -158,7 +156,8 @@ const addRole = () => {
         }])
         .then(({ title, salary, department_id }) => {
             const query = connection.query('INSERT INTO role SET ?', { title, salary, department_id }, (err, result) => {
-                err ? console.error(err) : console.table(results);
+                (err) ? err: console.log('Failed to add role.')
+                console.table(results);
                 viewDepartments();
             })
         })
