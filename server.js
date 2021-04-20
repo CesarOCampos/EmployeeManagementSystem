@@ -71,6 +71,7 @@ const viewEmployees = () => {
 
 const viewRoles = () => {
     connection.query('SELECT * FROM role', (err, results) => {
+        'SELECT employee.id, employee.first_name, employee.last_name, role.id, role.title FROM employee LEFT JOIN role ON employee.role_id = role.id'
         if (err) throw err;
         console.table(results);
         SystemSearch();
@@ -171,20 +172,26 @@ const addRole = () => {
         })
 };
 
-const updateEmployee = () => {
+const employeerecords = () => {
     connection.query('SELECT employee.id, employee.first_name, employee.last_name, role.id, role.title FROM employee LEFT JOIN role ON employee.role_id = role.id', (err, results) => {
-        if (err) throw err;
-        console.table(results);
+        (err) ? console.log(err): console.table(results);
+    })
+};
 
-        inquirer.prompt([{
+const updateEmployee = () => {
+    employeerecords();
+
+    inquirer.prompt([{
             name: "id",
             message: "Select the id of the employee to be updated: ",
             type: "input",
-        }, {
+        },
+        {
             name: "role_id",
             message: "What role id will they be updating too: ",
             type: "input",
-        }, {
+        },
+        {
             name: "update_role",
             message: "Which role to update?",
             type: "list",
@@ -202,12 +209,13 @@ const updateEmployee = () => {
                 'Sales Lead',
                 'Sales',
             ],
-        }, ]).then(({ role_id, id }) => {
-            var query = connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [role_id, id], (err, results) => {
-                err ? console.error(err) : console.log('Successfully Updated the employee!');
-                console.table(results);
-                viewEmployees();
-            })
+        },
+    ]).then(({ role_id, id }) => {
+        connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [role_id, id], (err, results) => {
+            err ? console.error(err) : console.log('Successfully Updated the employee!');
+            console.table(results);
+            employeerecords();
         })
+        SystemSearch();
     })
-};
+}
