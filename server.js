@@ -28,6 +28,7 @@ const SystemSearch = () => {
                 'Add an Employee',
                 'Add a Role',
                 'Update Employee',
+                'Quit'
             ]
         })
         .then((answer) => {
@@ -52,7 +53,8 @@ const SystemSearch = () => {
 
                 case 'Update Employee':
                     return updateEmployee();
-
+                case 'Quit':
+                    return connection.end();
                 default:
                     return console.log(`This action ${answer.action} cannot be processed.`);
             }
