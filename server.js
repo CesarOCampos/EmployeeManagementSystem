@@ -53,8 +53,7 @@ const SystemSearch = () => {
 
                 case 'Update Employee':
                     return updateEmployee();
-                case 'Quit':
-                    return connection.end();
+
                 default:
                     return console.log(`This action ${answer.action} cannot be processed.`);
             }
@@ -172,7 +171,7 @@ const addRole = () => {
                 console.table(result);
             })
             viewRoles()
-        });
+        })
 };
 
 const employeerecords = () => {
@@ -213,7 +212,7 @@ const updateEmployee = () => {
                     'Sales Lead',
                     'Sales',
                 ],
-            },
+            }
         ])
         .then(({ role_id, id }) => {
             connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [role_id, id], (err, results) => {
