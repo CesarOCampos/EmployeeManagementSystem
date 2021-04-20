@@ -24,9 +24,9 @@ const SystemSearch = () => {
                 'View All Employees',
                 'View Employees by Role',
                 'View Employees by department',
+                'Add a Department',
                 'Add an Employee',
                 'Add a Role',
-                'Add a Department',
                 'Update Employee',
             ]
         })
@@ -41,14 +41,14 @@ const SystemSearch = () => {
                 case 'View Employees by department':
                     return viewDepartments();
 
+                case 'Add a Department':
+                    return addDepartment();
+
                 case 'Add an Employee':
                     return addEmployee();
 
                 case 'Add a Role':
                     return addRole();
-
-                case 'Add a Department':
-                    return addDepartment();
 
                 case 'Update Employee':
                     return updateEmployee();
@@ -60,25 +60,25 @@ const SystemSearch = () => {
 }
 
 const viewEmployees = () => {
-    connection.query('SELECT * FROM employee', (err, result) => {
+    connection.query('SELECT * FROM employee', (err, results) => {
         if (err) throw err;
-        console.table(result);
+        console.table(results);
         SystemSearch();
     });
 };
 
 const viewRoles = () => {
-    connection.query('SELECT * FROM role', (err, result) => {
+    connection.query('SELECT * FROM role', (err, results) => {
         if (err) throw err;
-        console.table(result);
+        console.table(results);
         SystemSearch();
     });
 };
 
 const viewDepartments = () => {
-    connection.query('SELECT * FROM department', (err, result) => {
+    connection.query('SELECT * FROM department', (err, results) => {
         if (err) throw err;
-        console.table(result);
+        console.table(results);
         SystemSearch();
     });
 };
@@ -89,7 +89,7 @@ const addDepartment = () => {
         type: 'input',
         message: 'Enter the department name:',
     }]).then(({ department_name }) => {
-        const query = connection.query('INSERT INTO department SET ?', { department_name }, (err, result) => {
+        const query = connection.query('INSERT INTO department SET ?', { department_name }, (err, results) => {
             (err) ? err: console.log('Failed to add Department.')
             viewDepartments();
         })
@@ -118,7 +118,7 @@ const addEmployee = () => {
             .then(({ firstName, lastName, employeeRole }) => {
                 connection.query('SELECT id, first_name, last_name FROM employee WHERE (id IN (SELECT manager_id FROM employee));', (err, results) => {
                     err ? console.error(err) : inquirer.prompt([{
-                        name: 'Manager',
+                        name: 'manager',
                         type: 'list',
                         choices: results.map((management) => {
                             return {
@@ -155,8 +155,8 @@ const addRole = () => {
             message: 'Enter the new role department id:',
         }])
         .then(({ title, salary, department_id }) => {
-            const query = connection.query('INSERT INTO role SET ?', { title, salary, department_id }, (err, result) => {
-                (err) ? err: console.log('Failed to add role.')
+            connection.query('INSERT INTO role SET ?', { title, salary, department_id }, (err, results) => {
+                err ? console.error(err) : console.log('Successfully Updated!');
                 console.table(results);
                 viewDepartments();
             })
@@ -164,9 +164,9 @@ const addRole = () => {
 };
 
 const updateEmployee = () => {
-    connection.query('SELECT employee.id, employee.first_name, employee.last_name, role.id, role.title FROM employee LEFT JOIN role ON employee.role_id = role.id', (err, result) => {
+    connection.query('SELECT employee.id, employee.first_name, employee.last_name, role.id, role.title FROM employee LEFT JOIN role ON employee.role_id = role.id', (err, results) => {
         if (err) throw err;
-        console.table(result);
+        console.table(results);
 
         inquirer.prompt([{
             name: "id",
@@ -195,8 +195,8 @@ const updateEmployee = () => {
                 'Sales',
             ],
         }, ]).then(({ role_id, id }) => {
-            connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [role_id, id], (err, result) => {
-                if (err) throw err;
+            var query = connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [role_id, id], (err, results) => {
+                err ? console.error(err) : console.log('Successfully Updated!');
                 viewEmployees();
             })
         })
