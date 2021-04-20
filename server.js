@@ -22,7 +22,7 @@ const SystemSearch = () => {
             message: "What would you like to do?",
             choices: [
                 'View All Employees',
-                'View Employees by Role',
+                'View Roles',
                 'View Employees by department',
                 'Add a Department',
                 'Add an Employee',
